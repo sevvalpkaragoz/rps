@@ -25,20 +25,61 @@ function playRound(humanChoice, comChoice) {
     humanChoice = getHumanChoice();
     comChoice = getComputerChoice();
 
-    if (humanChoice == "taş" && comChoice == "taş") console.log("Berabere!! Taş-Taş");
-    else if (humanChoice == "taş" && comChoice == "kağıt") console.log("KAYBETTİN!! Kağıt, taşı yener");
-    else if (humanChoice == "taş" && comChoice == "makas") console.log("KAZANDIN!! Taş, makası yener");
+    if (humanChoice == "taş" && comChoice == "taş") { 
+    comScore++;
+    humanScore++;
+    console.log("Berabere!! Taş-Taş");
+    }
 
-    else if (humanChoice == "kağıt" && comChoice == "taş") console.log("KAZANDIN!! Kağıt, taşı yener");
-    else if (humanChoice == "kağıt" && comChoice == "kağıt") console.log("BERABERE!! kağıt-kağıt");
-    else if (humanChoice == "kağıt" && comChoice == "makas") console.log("KAYBETTİN!! Makas, kağıdı keser");
+    else if (humanChoice == "taş" && comChoice == "kağıt") { 
+        console.log("KAYBETTİN!! Kağıt, taşı yener"); 
+        comScore++;
+    }
+    else if (humanChoice == "taş" && comChoice == "makas") {
+        humanScore++;
+        console.log("KAZANDIN!! Taş, makası yener") 
 
-    else if (humanChoice == "makas" && comChoice == "makas") console.log("BERABERE!! makas-makas");
-    else if (humanChoice == "makas" && comChoice == "taş") console.log("KAYBETTİN!! Taş, makası yener");
-    else if (humanChoice == "makas" && comChoice == "kağıt") console.log("KAZANDIN!! Makas, kağıdı keser");
+    }
 
+    else if (humanChoice == "kağıt" && comChoice == "taş") {
+    console.log("KAZANDIN!! Kağıt, taşı yener");
+    humanScore++;
+}
+    else if (humanChoice == "kağıt" && comChoice == "kağıt") {
+    comScore++;
+    humanScore++;
+    console.log("BERABERE!! kağıt-kağıt"); }
 
+    else if (humanChoice == "kağıt" && comChoice == "makas") { 
+    comScore++;
+    console.log("KAYBETTİN!! Makas, kağıdı keser"); }
+
+    else if (humanChoice == "makas" && comChoice == "makas") { 
+    comScore++;
+    humanScore++;
+    console.log("BERABERE!! makas-makas");
+    }
+    else if (humanChoice == "makas" && comChoice == "taş") {
+    comScore++;
+    console.log("KAYBETTİN!! Taş, makası yener");
+    }
+        
+    else if (humanChoice == "makas" && comChoice == "kağıt") {
+    humanScore++;
+    console.log("KAZANDIN!! Makas, kağıdı keser");
+    }
 
 }
 
-console.log(playRound(humanChoice, comChoice));
+function playGame() {
+    while (humanScore + comScore < 5) {
+       playRound(humanChoice, comChoice); 
+    }
+    console.log("Skor: " + humanScore + " - " + comScore);
+    if (humanScore > comScore ) console.log ("Kazandın!");
+    else if (humanScore < comScore ) console.log ("Kaybettin!");
+    else console.log("BERABERE!");
+}
+
+
+console.log(playGame());
